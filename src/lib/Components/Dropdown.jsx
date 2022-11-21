@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import arrow from "./Images/arrow.png";
+import "./lib/Components/CSS/style.css";
 
 export default function Dropdown({ label, arr, field }) {
   const [open, setOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function Dropdown({ label, arr, field }) {
 
   return (
     <>
-      <div>
+      <div className="dropdown">
         <label className="dropdownLabel"> {label} </label>
         <button className="dropdownButton" onClick={handleOpen}>
           <p>{selected}</p>
