@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import arrow from "./Images/arrow.png";
-import "./lib/Components/CSS/style.css";
+import "./CSS/style.css";
 
 export default function Dropdown({ label, arr, field }) {
   const [open, setOpen] = useState(false);
