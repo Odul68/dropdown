@@ -1,6 +1,7 @@
 import { useState } from "react";
+import arrow from "./Images/arrow.png";
 
-export default function Dropdown({ name, arr, data, field }) {
+export default function Dropdown({ label, arr, field }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("Choose");
   const handleOpen = () => {
@@ -10,16 +11,18 @@ export default function Dropdown({ name, arr, data, field }) {
   function selectedValue(e) {
     setSelected(e.target.innerText);
   }
+
   return (
     <>
       <div>
+        <label className="dropdownLabel"> {label} </label>
         <button className="dropdownButton" onClick={handleOpen}>
-          {selected}
-          {/* {open ? (
-            <i className="fa-solid fa-angle-down"></i>
+          <p>{selected}</p>
+          {open ? (
+            <img alt="arrow up" className="arrow active" src={arrow} />
           ) : (
-            <i className="fa-solid fa-chevron-up"></i>
-          )} */}
+            <img alt="arrow down" className="arrow" src={arrow} />
+          )}
         </button>
 
         {open ? (
@@ -27,7 +30,7 @@ export default function Dropdown({ name, arr, data, field }) {
             <ul>
               {arr.map((item) => (
                 <li
-                  value={item[field]}
+                  value={selected}
                   className="dropdownOption"
                   key={item[field]}
                   onClick={selectedValue}
