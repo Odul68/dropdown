@@ -18,7 +18,7 @@ function Dropdown(_ref) {
     field
   } = _ref;
   const [open, setOpen] = (0, _react.useState)(false);
-  const [selected, setSelected] = (0, _react.useState)("Choose");
+  const [selected, setSelected] = (0, _react.useState)("Select an option...");
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -30,6 +30,7 @@ function Dropdown(_ref) {
   }, /*#__PURE__*/_react.default.createElement("label", {
     className: "dropdownLabel"
   }, " ", label, " "), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
     className: "dropdownButton",
     onClick: handleOpen
   }, /*#__PURE__*/_react.default.createElement("p", null, selected), open ? /*#__PURE__*/_react.default.createElement("img", {

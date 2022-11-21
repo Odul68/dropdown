@@ -4,7 +4,7 @@ import "./CSS/style.css";
 
 export default function Dropdown({ label, arr, field }) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState("Choose");
+  const [selected, setSelected] = useState("Select an option...");
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -17,7 +17,7 @@ export default function Dropdown({ label, arr, field }) {
     <>
       <div className="dropdown">
         <label className="dropdownLabel"> {label} </label>
-        <button className="dropdownButton" onClick={handleOpen}>
+        <button type="button" className="dropdownButton" onClick={handleOpen}>
           <p>{selected}</p>
           {open ? (
             <img alt="arrow up" className="arrow active" src={arrow} />

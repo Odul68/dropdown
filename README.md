@@ -4,12 +4,15 @@ Dropdown button to use in a form.
 
 ## Install
 
-In the project directory, you can run:
+Run the command :
 
-### Use in your code
+`npm i dropdown-odul68`
 
-label for the dropdown title
-arr for the data
-field for the option to be showed
+### Usage
 
-`<Dropdown label={} arr={} field="" />`
+```Javascript
+import { Dropdown } from 'dropdown-odul68';
+
+<Dropdown label="Title" arr={data} field="name" />
+;
+```
