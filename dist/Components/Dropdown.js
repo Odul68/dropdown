@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Dropdown;
 require("core-js/modules/web.dom-collections.iterator.js");
+require("core-js/modules/es.json.stringify.js");
 var _react = _interopRequireWildcard(require("react"));
 var _arrow = _interopRequireDefault(require("./Images/arrow.png"));
 require("./CSS/style.css");
@@ -15,16 +16,21 @@ function Dropdown(_ref) {
   let {
     label,
     arr,
-    field
+    field,
+    selected,
+    onClick: _onClick
   } = _ref;
   const [open, setOpen] = (0, _react.useState)(false);
-  const [selected, setSelected] = (0, _react.useState)("Select an option...");
+  const [list, setList] = (0, _react.useState)(arr);
   const handleOpen = () => {
     setOpen(!open);
   };
-  function selectedValue(e) {
-    setSelected(e.target.innerText);
-  }
+  (0, _react.useEffect)(() => {
+    if (!field) {
+      const updateList = arr.map(item => JSON.stringify(item));
+      setList(updateList);
+    }
+  }, [arr, field]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "dropdown"
   }, /*#__PURE__*/_react.default.createElement("label", {
@@ -33,7 +39,7 @@ function Dropdown(_ref) {
     type: "button",
     className: "dropdownButton",
     onClick: handleOpen
-  }, /*#__PURE__*/_react.default.createElement("p", null, selected), open ? /*#__PURE__*/_react.default.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("p", null, selected[field]), open ? /*#__PURE__*/_react.default.createElement("img", {
     alt: "arrow up",
     className: "arrow active",
     src: _arrow.default
@@ -43,10 +49,9 @@ function Dropdown(_ref) {
     src: _arrow.default
   })), open ? /*#__PURE__*/_react.default.createElement("div", {
     className: "dropdownOptionsContainer"
-  }, /*#__PURE__*/_react.default.createElement("ul", null, arr.map(item => /*#__PURE__*/_react.default.createElement("li", {
-    value: selected,
+  }, /*#__PURE__*/_react.default.createElement("ul", null, list.map(item => /*#__PURE__*/_react.default.createElement("li", {
     className: "dropdownOption",
-    key: item[field],
-    onClick: selectedValue
-  }, item[field])))) : null));
+    key: (item === null || item === void 0 ? void 0 : item[field]) || item,
+    onClick: () => _onClick(item)
+  }, (item === null || item === void 0 ? void 0 : item[field]) || item)))) : null));
 }

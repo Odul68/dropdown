@@ -1,24 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import arrow from "./Images/arrow.png";
 import "./CSS/style.css";
 
-export default function Dropdown({ label, arr, field }) {
+export default function Dropdown({ label, arr, field, selected, onClick }) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState("Select an option...");
+  const [list, setList] = useState(arr);
+
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  function selectedValue(e) {
-    setSelected(e.target.innerText);
-  }
+  useEffect(() => {
+    if (!field) {
+      const updateList = arr.map((item) => JSON.stringify(item));
+      setList(updateList);
+    }
+  }, [arr, field]);
 
   return (
     <>
       <div className="dropdown">
         <label className="dropdownLabel"> {label} </label>
         <button type="button" className="dropdownButton" onClick={handleOpen}>
-          <p>{selected}</p>
+          <p>{selected[field]}</p>
           {open ? (
             <img alt="arrow up" className="arrow active" src={arrow} />
           ) : (
@@ -29,14 +33,13 @@ export default function Dropdown({ label, arr, field }) {
         {open ? (
           <div className="dropdownOptionsContainer">
             <ul>
-              {arr.map((item) => (
+              {list.map((item) => (
                 <li
-                  value={selected}
                   className="dropdownOption"
-                  key={item[field]}
-                  onClick={selectedValue}
+                  key={item?.[field] || item}
+                  onClick={() => onClick(item)}
                 >
-                  {item[field]}
+                  {item?.[field] || item}
                 </li>
               ))}
             </ul>

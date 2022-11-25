@@ -1,18 +1,24 @@
 {
   "name": "dropdown-odul68",
-  "version": "0.1.4",
+  "version": "0.2.7",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
     "dist",
     "README.md"
   ],
+  "keywords": [
+    "react",
+    "data",
+    "dropdown",
+    "react-dropdown"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Odul68/dropdown.git"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -40,7 +46,6 @@
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6"
-
   },
   "dependencies": {
     "babel-preset-env": "^1.7.0",
